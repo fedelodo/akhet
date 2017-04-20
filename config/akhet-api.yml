@@ -1,0 +1,10 @@
+credentials:
+  clients:
+  - username: clientuser1
+    password: clientpass1
+  agents:
+  - username: agentuser1
+    password: agentpass1
+  proxies:
+  - username: proxyuser1
+    password: proxypass1
