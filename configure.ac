@@ -17,8 +17,8 @@ if version_gt "17.04.0" $(docker --version | cut -d" " -f3 | tr -d ','); then
 fi
 
 
-#help message for user
-if ! id -nG "$USER" | grep -qw "docker"; then
+#check if current user can run docker
+if ! docker info &> /dev/null;  then
 	AC_MSG_WARN([The current user is not in docker group])
 fi
 
