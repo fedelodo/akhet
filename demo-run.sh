@@ -126,4 +126,4 @@ docker container run \
   -p 8080:80 \
   -p 8433:433 \
   -v $CONFIG_DEMO_UI:/etc/akhet-demo-ui.yml \
-  akhet/demo/ui:latest
+akhet/demo/ui:latest

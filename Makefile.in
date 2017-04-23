@@ -85,4 +85,4 @@ plasma-science:
 		akhet/images/ubuntu-16-04-plasma-root6/
 	docker image build \
 		-t akhet/images/ubuntu-16-04-plasma-geant4:latest \
-		akhet/images/ubuntu-16-04-plasma-geant4/
+akhet/images/ubuntu-16-04-plasma-geant4/

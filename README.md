@@ -11,12 +11,13 @@ Akhet is a docker-oriented virtual-desktop environment infrastructure.
 
 1. Clone this repo
 2. Change the working directory to this repo
-3. execute `make` to build all system images
-4. execute `make demoui` to build the demo UI
-5. execute `make base` to build the base image
-6. execute `make xterm` to build the xterm image
-7. execute `./demo-run.sh`
-8. open `http://localhost:8080/`
+3. execute `./configure` to check that al dependencies are satisfied 
+4. execute `make` to build all system images
+5. execute `make demoui` to build the demo UI
+6. execute `make base` to build the base image
+7. execute `make xterm` to build the xterm image
+8. execute `./demo-run.sh`
+9. open `http://localhost:8080/`
 
 ## Other make options
 
