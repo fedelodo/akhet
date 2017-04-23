@@ -1,3 +1,6 @@
 Makefile
 config.log
 config.status
+configure.scan
+aclocal.m4
+autoscan.log
