@@ -4,26 +4,40 @@ from random import randint
 import requests.exceptions
 import threading
 
+#import yaml
+#config_stream = open("/etc/akhet-agent.yml", "r")
+#config = yaml.load(config_stream)
+#config_stream.close()
+
 import logging
 logger = logging.getLogger(__name__)
+
+
 
 class AkhetAgentInstanceRunner(threading.Thread):
 
     used_ws_vnc_ports_semaphore = None
     used_ws_vnc_ports = []
+    #int(config['vnc_port']['start'])
 
     @staticmethod
     def get_free_ws_vnc_port():
-        # FIXME: random is not a good "robust" solution
-        # FIXME: the range must be changed with a config
+        vnc_port_start = 9090 #int(config['vnc_port']['start'])
+        vnc_port_end = 9190 
         port_ws_vnc = None
         while port_ws_vnc == None:
             AkhetAgentInstanceRunner.used_ws_vnc_ports_semaphore.acquire()
-            port_ws_vnc = randint(9090,19090)
-
-            if port_ws_vnc in AkhetAgentInstanceRunner.used_ws_vnc_ports:
-                port_ws_vnc = None
-                time.sleep(1)
+            if not AkhetAgentInstanceRunner.used_ws_vnc_ports:
+                port_ws_vnc = vnc_port_start
+            elif AkhetAgentInstanceRunner.used_ws_vnc_ports[-1] < vnc_port_end:
+                    port_ws_vnc = AkhetAgentInstanceRunner.used_ws_vnc_ports[-1]+1
+            else:
+                for i in range(vnc_port_end - vnc_port_start):
+                    if (i + vnc_port_start) not in AkhetAgentInstanceRunner.used_ws_vnc_ports:
+                        port_ws_vnc = (i+vnc_port_start)
+                        break
+                    else:	
+                        logger.debug("No ports free")
 
             AkhetAgentInstanceRunner.used_ws_vnc_ports.append(port_ws_vnc)
             AkhetAgentInstanceRunner.used_ws_vnc_ports_semaphore.release()
